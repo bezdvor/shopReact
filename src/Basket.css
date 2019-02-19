@@ -1,0 +1,7 @@
+.CardBasket{max-width: 28%; border: 1px solid #74042a; margin: 20px; display: inline-block;
+    padding: 10px;}
+.title{color: #74042a; font-size: 1.75rem; font-weight: 700; font-family: 'Exo 2', sans-serif; text-align: center;}
+.cardText{font-size: .9rem; text-align: left;}
+.titleSmall{color: #74042a; font-size: 1.25rem; font-weight: 700; font-family: 'Exo 2', sans-serif; text-align: center;}
+.btnOform{color: #fff; /* цвет текста */ background: #74042a;}
+.btnOform:hover { background: #a32060; }

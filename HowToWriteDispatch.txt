@@ -1,0 +1,77 @@
+1 ПЕРВОЕ ДЕЙСТВИЕ) import {} from 'redux';
+ после создания стор там будет и стейт и диспатч, который этот
+ стейт будет менять
+ 1.1) создаем инишиал стейт:
+ InintialState = {data:[...], category: null}
+ где data - изначальный массив данных, а category - тот параметр, по которому мы будем фильтровать массив, изначально null, что вывести все данные из ДАТА.
+ 1.2) Создаем редьюсер:
+ function reducer (state = InintialState, action){
+
+ return {...state}
+ }
+редьюсер возвращает новый стейт, редьюсер не должен возвращать ИнишиалСтейт, всегда возвращает НОВЫЙ стейт (все это - базовый редьюсер)
+1.3) Пишем СТОРЕ
+const store = createStore (reducer);
+storedispatch({type:'T',d:1})
+создаем при помощи функции createStore которую заимпортили с redux,
+в нее мы передаем reducer (если не передать, то будет ошибка)
+дальше
+export default store
+
+2 ВТОРОЕ ДЕЙСТВИЕ) этот сторе нужно подключить к нашему приложению,
+заходим в index.js 
+import {Provider} from 'react-redux'
+import store from '//path to store' (путь к созданому сторе)
+<App> оборачиваем <Provider> и прокидываем туда store
+этот store будет props у провайдера он будет равен заимпорченый store
+получается <Provider store={store}><App/></Provider>
+теперь сторе подключен к нашему приложению
+
+3 ТРЕТЬЕ ДЕЙСТВИЕ) Подключаем данные к тому компоненту, которому эти данные нужны, и те данные которые нужны этому компоненту
+например, компонент Каталог
+Catalog
+import {connect} from 'react-redux';
+class Catalog extends React.Component{
+	render(){
+	чтобы в рендере использовать данные data (наш массив из сторе),
+	единственный способ эти данные получить - это через props,
+	поэтому {this.props.xxx.map()xxx специально создан для того, чтобы туда прокинуть data}
+	}
+}
+const mapStateToProps = (state) => {return{xxx:state.data}}
+mapStateToProps принимает в качестве аргумента state,
+когда мы запускаем connect и оборачиваем наш компонент, то
+сам connect возмет текущий state и пробросит в mapStateToProps
+в качестве параметра state, а mapStateToProps должна вернуть 
+объект, этот объект это и есть наш props, поэтому
+назначаем xxx:state(из connect).data(массив data)
+после этого 
+export default connect(mapStateToProps)(Catalog)
+каждый раз, когда будем импортить Каталог и где-то применять его, в нем уже будут доступны данные из store
+
+  4 ЧЕТВЕРТОЕ ДЕЙСТВИЕ) 
+  CategoryFilter:
+  import {connect} from 'react-redux';
+  import {bindActionCreators} from 'redux';
+  const mapDispatchToProps = (dispatch)=>
+  (bindActionCreators({ddd:(y)=>{return{type:'T', d:y}}},
+  dispatch))
+  свойства (type:'T', d:y) из пункта 1.3 Пишем СТОРЕ
+
+  далее подключаеь mapDispatchToProps к CategoryFilter
+  export default connect (null, mapDispatchToProps)
+  (CategoryFilter);
+  если нужно отслеживать state, то вместо null
+  пишем mapStateToProps (первый параметр)
+
+  class CategoryFilter extends React.Component{}
+  теперь внутри этого компонента
+  мы сможем запустить метод
+  {this.props.(1)} и закинем (1)
+  метод ddd хранит в себе action c type:'T'
+  тот, который мы сформировали в bindActionCreators
+  и вместо параметра d подставляетс то что мы передали
+  (в нашем случае 1), этот метод запускает dispatch
+  с action с type 'T' и d:(1), приходит в редьюсер
+  if action === 'T' то action.d = 1, далее изменяем
+  стейт исходя из этой единички что пришла

@@ -1,0 +1,12 @@
+.w30{margin: auto; padding: 2%; width: 30%; min-height: 250px; box-sizing: border-box; border: 1px solid; border-radius: 2%;}
+.innerImg {height: 100%; width: 100%; display: block; border-radius: 2%;}
+.buttonGood{color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: rgb(33, 100, 141); /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */
+    border-radius: 6px;
+    outline: none; /* убирать контур в Mozilla */}
+.buttonGood:hover { background: rgb(68, 150, 163); } /* при наведении курсора мышки */
+.buttonGood:active { background: rgb(13, 32, 50); } /* при нажатии */
+.priceGood{text-align: center; font-size: 36px;}

@@ -1,0 +1,14 @@
+.cardTitle{font-weight: 600; text-align: center; background-color: inherit;
+
+}
+.CardDiv{max-width: 28%; min-height: 500px; border: 1px solid #74042a;  margin: 25px; display: inline-flex; flex-direction: row; justify-content: space-around; align-items: flex-start;}
+.cardInnerDiv{text-align: center; padding: 10px;}
+.btnBuy{color: #fff; /* цвет текста */ background: #74042a;}
+.btnBuy:hover { background: #a32060; }
+.btnMore{color: #fff; /* цвет текста */background: #455566;}
+.btnMore:hover { background: #a32060; }
+.linkToDetail{color: #74042a; font-size: 1.75rem; font-weight: 700; font-family: 'Exo 2', sans-serif;
+}
+.linkToDetail:hover{text-decoration: none; font-size: 1.8rem; color: #a32060;}
+.cardText{font-size: .9rem; text-align: left;}
+.cardText:first-line{font-weight: 700;}
